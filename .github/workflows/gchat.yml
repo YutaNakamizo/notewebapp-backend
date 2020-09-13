@@ -1,0 +1,23 @@
+name: Google Chat Notification
+on:
+  pull_request:
+    types: [opened]
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
+  push:
+    branches:
+      - master
+
+jobs:
+  notify:
+    name: Chat Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: google-chat-notification
+        uses: Co-qn/google-chat-notification@v1
+        with:
+          name: ${{ github.actor }}
+          url: ${{ secrets.GCHAT_WEBHOOK_URL }}
+          status: ${{ job.status }}
