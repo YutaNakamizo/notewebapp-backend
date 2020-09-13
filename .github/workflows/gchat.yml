@@ -18,6 +18,6 @@ jobs:
       - name: google-chat-notification
         uses: Co-qn/google-chat-notification@v1
         with:
-          name: ${{ github.event_name }} on ${{ github.ref }} by ${{ github.actor }}
+          name: ${{ github.actor }}
           url: ${{ secrets.GCHAT_WEBHOOK_URL }}
           status: ${{ job.status }}
