@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
     urlPatterns = {"/hello"}
 )
 
-
+//http通信するサーブレットは　HttpServletクラスを継承して作成する。
 public class HelloAppEngine extends HttpServlet {
 
   @Override
@@ -20,8 +20,8 @@ public class HelloAppEngine extends HttpServlet {
     response.setContentType("text/plain");
     response.setCharacterEncoding("UTF-8");
 
-    response.getWriter().print("Hello App Engine!\r\n");
-
+    response.getWriter().print("Hello World app engine!!!\r\n");
+    
   }
 }
 
