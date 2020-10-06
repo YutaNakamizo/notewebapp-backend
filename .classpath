@@ -20,17 +20,17 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/81908/Documents/Program/Java/ライブラリ/jackson-annotations-2.11.3.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/81908/Documents/Program/Java/ライブラリ/"/>
+			<attribute name="javadoc_location" value="file:/C:/Users/81908/Dev/notewebapp-backend/src/main/java/library/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/81908/Documents/Program/Java/ライブラリ/jackson-core-2.11.3.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/81908/Documents/Program/Java/ライブラリ/"/>
+			<attribute name="javadoc_location" value="file:/C:/Users/81908/Dev/notewebapp-backend/src/main/java/library/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/81908/Documents/Program/Java/ライブラリ/jackson-databind-2.11.3.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/81908/Documents/Program/Java/ライブラリ/"/>
+			<attribute name="javadoc_location" value="file:/C:/Users/81908/Dev/notewebapp-backend/src/main/java/library/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
