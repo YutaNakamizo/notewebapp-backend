@@ -30,7 +30,7 @@ public class CreateNewNote extends HttpServlet {
       response.setContentType("text/plain");	//コンテントタイプの指定
       response.setCharacterEncoding("UTF-8");	//送るデータの文字系列の指定
       
-      //レスポンス内容
+      //レスポンス内容 出力する
       response.getWriter().println("Get Put Request!");
       
       response.getWriter().println("ID:"+ newnote.getId());

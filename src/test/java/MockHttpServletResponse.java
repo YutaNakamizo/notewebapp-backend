@@ -23,6 +23,8 @@ class MockHttpServletResponse implements HttpServletResponse {
   private String encoding;
   private StringWriter writerContent = new StringWriter();
   private PrintWriter writer = new PrintWriter(writerContent);
+  
+  
 
   @Override
   public void setContentType(String contentType) {
