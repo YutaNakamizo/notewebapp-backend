@@ -18,19 +18,9 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/81908/Documents/Program/Java/ライブラリ/jackson-annotations-2.11.3.jar">
+	<classpathentry kind="lib" path="C:/Users/81908/Dev/notewebapp-backend/lib/json-lib-2.4-jdk15.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/81908/Dev/notewebapp-backend/src/main/java/library/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/81908/Documents/Program/Java/ライブラリ/jackson-core-2.11.3.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/81908/Dev/notewebapp-backend/src/main/java/library/"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/81908/Documents/Program/Java/ライブラリ/jackson-databind-2.11.3.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/81908/Dev/notewebapp-backend/src/main/java/library/"/>
+			<attribute name="javadoc_location" value="file:/C:/Users/81908/Dev/notewebapp-backend/lib/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>

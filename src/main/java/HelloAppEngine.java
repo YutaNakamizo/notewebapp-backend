@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 )
 
 //http通信するサーブレットは　HttpServletクラスを継承して作成する。
+//ローカルループバックアドレス　http://127.0.0.1:8080/api/
 public class HelloAppEngine extends HttpServlet {
 
   @Override

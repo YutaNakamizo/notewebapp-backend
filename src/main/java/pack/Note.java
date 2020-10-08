@@ -46,7 +46,13 @@ public class Note{
     	
         
         System.out.println("Create Success!!");
-
+        
+          System.out.println("ID:"+ this.id);
+          System.out.println("date:"+ this.dateCreated);
+          System.out.println("Last Modified:"+this.dateLastModified);
+          System.out.println("archived:"+this.archived);
+          System.out.println("title:"+this.title);
+          System.out.println("body:"+this.body);
     }
     
     /**
@@ -76,8 +82,8 @@ public class Note{
     	return id;
     }
     
-    public String getStatus() {
-    	return status;
+    public long getDateLastModified(){
+    	return dateLastModified;
     }
     
     public boolean getArchived() {
