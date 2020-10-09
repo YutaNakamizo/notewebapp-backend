@@ -13,7 +13,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
@@ -25,6 +24,8 @@ import pack.Note;
     name = "CreateNewNote",
     urlPatterns = {"/api/notes"}
 )
+
+//
 
 // ローカルループバックアドレス　http://127.0.0.1:8080/api/
 public class CreateNewNote extends HttpServlet {
@@ -95,16 +96,64 @@ public class CreateNewNote extends HttpServlet {
 
   }
   
+
+  //error起きてるから直してね
+  
+
+public Note[] makeNoteArray() {
+	  
+	  Note[] notes = new Note[3];
+	  
+	  String title1 ="tamanegi";
+	  String body1  ="3ko"; 
+	  
+	  String title2 ="tomato";
+	  String body2  ="2ko"; 
+	  
+	  String title3 ="niku";
+	  String body3  ="200g"; 
+
+
+    
+  //ノート作成
+	  notes[0] = Note.create(title1,body1); 
+	  notes[1] = Note.create(title2,body2); 
+	  notes[2] = Note.create(title3,body3); 
+	  
+	  return notes;
+  }
+  
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) 
       throws IOException {
 
-    response.setContentType("text/plain");
-    response.setCharacterEncoding("UTF-8");
+//    response.setContentType("text/plain");
+//    response.setCharacterEncoding("UTF-8");
+//
+//    response.getWriter().print("Hello World create new Note!!!\r\n");
+	  
+	  //ここで配列を初期化している
+	  Note[] notes = makeNoteArray(); 
+	  
+	  
+	  //Note class -> JSON
+	  ObjectMapper mapper = new ObjectMapper();
+	  String jsonStringNote = mapper.writeValueAsString(notes);
 
-    response.getWriter().print("Hello World create new Note!!!\r\n");
+	  //JSON形式の文字列をコンソールに表示
+	  System.out.println(jsonStringNote);
+	    
+	  
+	  //レスポンスの設定
+	  response.setContentType("application/json");	//コンテントタイプの指定
+	  response.setCharacterEncoding("UTF-8");	//送るデータの文字系列の指定
     
+    //レスポンス内容 
+	  PrintWriter writer = response.getWriter();
+	  writer.println(jsonStringNote);
+	  writer.flush();
+	  
     
   }
 }
