@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * 2020/10/08 at feat/#15   make doGet request ,which return all notes 
+ * 
+ */
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -97,7 +101,6 @@ public class CreateNewNote extends HttpServlet {
   }
   
 
-  //error起きてるから直してね
   
 
 public Note[] makeNoteArray() {
