@@ -1,32 +1,34 @@
 package pack;
 
 /**
+ * @author Tororocombu
+ * 2020 10 11   at feat/#4		make setter for title and body　and dateLastModified
+ * 								
  * 
- * 
- * @version 1.0　17 Sep 2020
  * @authour Tororocombu
  * メモの実体を新規作成するクラス
  * 
- * @version 2.0 02 Sep 2020
  * @author Tororocombu
  * http通信の実装
  * 
  */
 import java.util.Calendar;
 import java.util.UUID;	//固有のIDを生成できる
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Note{
+	
+    public String id;
+    public String title;
+    public String body;
+    public long dateCreated;
+    public long dateLastModified;
+    public Boolean archived;
+    
 
-    
-    private long dateCreated; //get in this class
-    private long dateLastModified;
-    private String id;  // create in this class
-    private boolean archived;
-    
-    private String title;
-    private String body;
-    
+      
     /**
      * just set data to note class
      * @param title 引数
@@ -45,14 +47,9 @@ public class Note{
     	this.archived	= archived;
     	
         
-        System.out.println("Create Success!!");
+        System.out.println("Note method create....");
         
-          System.out.println("ID:"+ this.id);
-          System.out.println("date:"+ this.dateCreated);
-          System.out.println("Last Modified:"+this.dateLastModified);
-          System.out.println("archived:"+this.archived);
-          System.out.println("title:"+this.title);
-          System.out.println("body:"+this.body);
+          showState();
     }
     
     /**
@@ -69,6 +66,17 @@ public class Note{
         
         System.out.println("Create Success!!");
         return new Note(id, title, body, dateCreated, dateCreated, archived);
+    }
+    
+    
+    public void showState() {
+    	
+    	System.out.println("ID:"+ this.id);
+        System.out.println("date:"+ this.dateCreated);
+        System.out.println("Last Modified:"+this.dateLastModified);
+        System.out.println("archived:"+this.archived);
+        System.out.println("title:"+this.title);
+        System.out.println("body:"+this.body+"\n");
     }
     
     
@@ -98,6 +106,18 @@ public class Note{
     	return body;
     }
     
- 
+    //セッター
+    public void setTitle(String newTitle) {
+    	this.title = newTitle;
+    }
+    
+    public void setBody(String newBody) {
+    	this.body = newBody;
+    }
+    
+    public void setDateLastModified() {
+    	this.dateLastModified = Calendar.getInstance().getTimeInMillis();
+    	
+    } 
     
 }
