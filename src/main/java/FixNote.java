@@ -1,4 +1,9 @@
 /**
+ * @author Tororocombu
+ * 2020/10/18 at feat/#5	start to make doDelete request
+ * 
+ * @author　Tororocmbu
+ * 2020/10/16 at feat/#4	finished creating doPost request
  * 
  * @author Tororocombu
  * 2020/10/11 at feat/#4	make doGet request(for debug),
@@ -82,7 +87,6 @@ public class FixNote extends HttpServlet{
 		Note target = new Note(id,title,body,dateCreated,dateCreated,false);
 		
 		//Note ->  JSON
-		System.out.println("change this note to json and send back\n");
 		ObjectMapper mapper = new ObjectMapper();
 		String targetStringJson = null;
 		try {
@@ -95,6 +99,8 @@ public class FixNote extends HttpServlet{
 		//for debug
 		//System.out.println("In DB: "+targetStringJson);
 		
+		System.out.println("change this note to json and send back...");
+		System.out.println("Finish substituteForDB\n");
 		
 		return targetStringJson;
 	}
@@ -215,6 +221,102 @@ public class FixNote extends HttpServlet{
 	 	  writer.println(JsonStringRes);
 	 	  writer.flush();
 	       	
-	}
+	}//	doPost メソッド
+	
+	/**
+	 * 
+	 * [/api/notes/id]へのdeleteリクエストを受け付けるクラス。
+	 * 以下のプロセスで実装
+	 * 1	リクエストに含まれるノートIDの取得
+	 * 2	DBを参照					←今回は実装しない
+	 * 3	削除対象のデータ取得		←substituteForDBメソッドで代用
+	 * 4 	3のJsonを基に　Noteクラスを作成。
+	 * 5	作成したクラスの	Archive	を変更
+	 * 6	更新したNoteクラスをJson形式にする
+	 * 
+	 * 7	更新後JsonをDBへ送り返す	???? OR 削除要請 ?????			←今回は実装しない
+	 * 
+	 * 8	更新後jsonをレスポンス
+	 * 
+	 */
+	
+	@Override 
+	public void doDelete(HttpServletRequest request, HttpServletResponse response)
+		throws IOException{ 
+		
+		
+		//----1　リクエストに含まれるノートIDの取得  
+		String uri = request.getRequestURI();
+		String servPath = request.getServletPath();
+		String id = StringUtils.difference(servPath+"/",uri);
+		
+		//for debug		
+		System.out.println("uri:"+uri);	
+		System.out.println("servPath:"+servPath);	
+		System.out.println("id:"+id);
+		
+		
+		//----2　DBを参照				←今回は実装しない
+	    //----3 DBから削除対象のデータ取得		←substituteForDBメソッドで代用
+	     
+	    String jsonStringFromDB = substituteForDB(id);
+	    System.out.println("----In doDelete,received target json");
+	    //System.out.println("In doDelete: " + jsonStringFromDB);
+	     
+	       
+	    //---	4	3のJsonを基に　Noteクラスを作成。
+	     //JSON変換用のクラス
+	    JSONParser parser = new JSONParser();
+	    JSONObject jsonObjFromDB = null;
+	    try {
+	    	jsonObjFromDB = ( JSONObject )parser.parse( jsonStringFromDB );
+		} catch (ParseException e) {
+				
+			e.printStackTrace();
+		}
+			
+
+		//. JSON オブジェクトから特性の属性を取り出す
+		String idFromDB				= ( String )jsonObjFromDB.get("id");
+		String title				= ( String )jsonObjFromDB.get( "title" );
+		String body 				= ( String )jsonObjFromDB.get( "body" );
+		long   dateCreated 		= ( long )jsonObjFromDB.get("dateCreated");
+		long	  dateLastModified 	= ( long )jsonObjFromDB.get("dateLastModified");
+		boolean archived 		= ( boolean )jsonObjFromDB.get("archived");
+		   
+		   
+	    System.out.println("Note from DB");
+	    Note noteRes = new Note(id,title,body,dateCreated,dateLastModified,archived);
+	       
+	       
+	    //---	5	作成したクラスの	Archive	を変更,  更新日時の取得
+	    noteRes.setArchived(true);
+	    noteRes.setDateLastModified();
+	    noteRes.showState();
+	       
+	       
+	    //---	6	更新したNoteクラスをJson形式にする
+	    ObjectMapper mapper = new ObjectMapper();
+	 	String JsonStringRes = mapper.writeValueAsString(noteRes);
+	       
+	 	   
+	 	//---	7	更新後JsonをDBへ送り返す	???? OR 削除要請 ?????			←今回は実装しない
+	    //---	8	更新後jsonをレスポンス
+	 	   
+	 	//JSON形式の文字列をコンソールに表示
+	 	System.out.println("Responce:"+JsonStringRes);
+	 	    
+	 	  
+	 	//レスポンスの設定
+	 	response.setContentType("application/json");	//コンテントタイプの指定
+	 	response.setCharacterEncoding("UTF-8");	//送るデータの文字系列の指定
+	     
+	    //レスポンス内容 
+	 	PrintWriter writer = response.getWriter();
+	 	writer.println(JsonStringRes);
+	 	writer.flush();   
+	 	
+	}	//doDelete method
+	
 
 }
