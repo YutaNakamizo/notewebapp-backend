@@ -2,6 +2,9 @@ package pack;
 
 /**
  * @author Tororocombu
+ * 2020 10 18	at feat/#5		make setter for Archived 
+ * 
+ * @author Tororocombu
  * 2020 10 11   at feat/#4		make setter for title and body　and dateLastModified
  * 								
  * 
@@ -14,8 +17,6 @@ package pack;
  */
 import java.util.Calendar;
 import java.util.UUID;	//固有のIDを生成できる
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class Note{
@@ -119,5 +120,10 @@ public class Note{
     	this.dateLastModified = Calendar.getInstance().getTimeInMillis();
     	
     } 
+    
+    public void setArchived(boolean archived) {
+    	this.archived = archived;
+    	System.out.println("\n---Archived now: "+this.archived);
+    }
     
 }
